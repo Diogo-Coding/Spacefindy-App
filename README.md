@@ -64,3 +64,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## App
+
+**Enlace para instalar entorno: https://www.latirus.com/blog/2023/02/01/como-instalar-vue-3-en-laravel-10/**
+
+Proceso para instalar:
+  - Seguir pasos de la pagina de instalacion de entorno
+  - Instalar repositorio *Git Clone*
+  - Instalar */vendor* y */node_modules* en caso de no tenerlos
+  - Comando para actualizar el proyecto *git pull*
