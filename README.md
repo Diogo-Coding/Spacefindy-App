@@ -75,5 +75,4 @@ Proceso para instalar:
   - Instalar repositorio *Git Clone*
   - Instalar */vendor* y */node_modules* en caso de no tenerlos
   - Comando para actualizar el proyecto *git pull*
-  - Prueba
-  - Preuba 3
+  - Preuba 4
