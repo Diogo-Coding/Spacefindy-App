@@ -12,7 +12,8 @@
     "vue": "^3.2.13",
     "vue-plugin-load-script": "^2.1.1",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "vuex-multi-tab-state": "^1.0.17"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -23,6 +24,7 @@
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^8.39.0",
-    "eslint-plugin-vue": "^9.11.0"
+    "eslint-plugin-vue": "^9.11.0",
+    "volar-service-vetur": "latest"
   }
 }

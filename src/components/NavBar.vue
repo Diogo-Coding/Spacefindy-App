@@ -1,44 +1,40 @@
 <template>
-  <div class="home">
-    <NavBar />
-    <div class="mainPage">
+  <div class="navBar">
+    <div class="logo">
+      <!-- <img src="@/assets/SpaceFindy.png" alt="" class="imgLogo"> -->
+    </div>
+    <div></div>
+    <div></div>
+    <div
+      class="buttonsNav"
+      style="display: flex; justify-content: space-between"
+    >
+      <div class="buttonsNav">
+        <button class="AboutNavButton navButton">Acerca de nosotros</button>
+        <button class="SearchNavButton navButton">
+          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+        </button>
+      </div>
+      <div>
+        <router-link to="/login"><button class="LogInNavButton navButton">Log In</button></router-link>
+        <router-link to="/account">
+          <button class="LogInNavButtonIcon">
+            <i class="fa-solid fa-user fa-xl"></i>
+          </button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import { loadScript } from "vue-plugin-load-script";
-import NavBar from '@/components/NavBar.vue';
-
-export default {
-  name: 'HomeView',
-  components: {
-    NavBar
-  },
-  setup() {
-    onMounted(() => {
-      loadScript("https://kit.fontawesome.com/771394cdc2.js")
-    })
-  }
-}
+export default {};
 </script>
 
 <style scoped>
-.home {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  overflow: hidden;
-  margin: 0px;
-  top: 0px;
-  left: 0px;
-  align-items: center;
-}
-.mainPage {
-  height: 100%;
-  background-image: url('@/assets/Blog_EOY-Market-Report_Self-Storage-scaled.jpg');
+a {
+  text-decoration: none;
+  margin: 0;
 }
 .logo {
   height: 100%;
@@ -56,16 +52,7 @@ export default {
 .navButton {
   margin: 10px;
 }
-.container-1{
-  height: 100%;
-  width: 100%;
-}
-.background-image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  filter: brightness(0.5);
-}
+
 .LogInNavButtonIcon {
   border: 0 solid #e2e8f0;
   border-radius: 1.5rem;
@@ -134,5 +121,5 @@ export default {
     font-size: 1.125rem;
     padding: 1rem 2rem;
   }
-}
+} 
 </style>
