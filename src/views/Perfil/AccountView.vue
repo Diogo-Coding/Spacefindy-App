@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <NavBar style="position: fixed; overflow: hidden; top: 0; width: 100%; height: min-content; background-color: white;"/>
+  <div class="container" style="padding-top: 70px;">
     <header>
-      <i class="fa fa-bars" aria-hidden="true"></i>
     </header>
     <main>
       <div class="row">
@@ -13,26 +13,19 @@
             />
             <div class="active"></div>
           </div>
-          <h4 class="name">Jane Doe</h4>
-          <p class="info">UI/UX Designer</p>
-          <p class="info">jane.doe@gmail.com</p>
+          <h4 class="name">{{ this.$store.getters.getUser.username }}</h4>
           <div class="stats row">
             <div class="stat col-xs-4" style="padding-right: 50px">
-              <p class="number-stat">3,619</p>
+              <p class="number-stat">{{ this.$store.getters.getUser.followers }}</p>
               <p class="desc-stat">Followers</p>
             </div>
-            <div class="stat col-xs-4">
-              <p class="number-stat">42</p>
-              <p class="desc-stat">Following</p>
-            </div>
             <div class="stat col-xs-4" style="padding-left: 50px">
-              <p class="number-stat">38</p>
+              <p class="number-stat">0</p>
               <p class="desc-stat">Uploads</p>
             </div>
           </div>
           <p class="desc">
-            Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in
-            France. I really enjoy photography and mountains.
+            {{ this.$store.getters.getUser.profile_desc }}
           </p>
           <div class="social">
             <i class="fa fa-facebook-square" aria-hidden="true"></i>
@@ -88,35 +81,55 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import { loadScript } from 'vue-plugin-load-script';
-export default {
-  name: 'ProfileView',
-  setup() {
-    onMounted(() => {
-      loadScript("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css")
-      loadScript("https://kit.fontawesome.com/771394cdc2.js")
-    })
-  }
+import { onMounted } from "vue";
+import { loadScript } from "vue-plugin-load-script";
+import NavBar from "@/components/NavBar.vue";
+import { useStore } from "vuex";
 
+export default {
+  name: "ProfileView",
+  components: {
+    NavBar
+  },
+  setup() {
+
+    const store = useStore();
+    console.log(store.getters.getUser)
+    const followers = store.getters.getUser.followers
+    const profile_desc = store.getters.getUser.profile_desc
+
+    onMounted(() => {
+      loadScript(
+        "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
+      );
+      loadScript("https://kit.fontawesome.com/771394cdc2.js");
+    });
+
+    return {
+      followers,
+      profile_desc
+    }
+  },
 };
 </script>
 
 <style src="@/assets/bootstrap/bootstrap.min.css"></style>
 <style src="@/assets/google/font.css"></style>
 <style scoped>
-html,body {
+html,
+body {
   background: #efefef;
   font-family: "Arial";
+  overflow-y: scroll;
 }
 
 .container {
   max-width: 100%;
   /* margin: 30px auto 30px; */
-  padding: 0 !important;
+  padding: 70px 0 0 0 !important;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -137,18 +150,18 @@ header i {
   color: #fff;
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
   header {
     height: 150px;
-  } 
-  
+  }
+
   header i {
     right: -90%;
   }
 }
 
 main {
-      padding: 20px 20px 0px 20px;
+  padding: 20px 20px 0px 20px;
 }
 
 .left {
@@ -173,20 +186,20 @@ main {
   position: absolute;
   right: calc(50% - 70px);
   top: 50px;
-  background-color: #FFC107;
+  background-color: #ffc107;
   border: 3px solid #fff;
 }
 
-@media (max-width:990px) {
+@media (max-width: 990px) {
   .active {
     right: calc(50% - 60px);
     top: 50px;
-  } 
+  }
 }
 
 .name {
   margin-top: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 18pt;
   color: #777;
@@ -195,7 +208,7 @@ main {
 .info {
   margin-top: -5px;
   margin-bottom: 5px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 11pt;
   color: #aaa;
 }
@@ -205,15 +218,14 @@ main {
   text-align: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #ededed;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-
 
 .number-stat {
   padding: 0px;
   font-size: 14pt;
   font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #aaa;
 }
 
@@ -229,7 +241,7 @@ main {
   margin: 25px 40px;
   color: #999;
   font-size: 11pt;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding-bottom: 25px;
   border-bottom: 1px solid #ededed;
 }
@@ -246,10 +258,18 @@ main {
   margin: 0 15px;
 }
 
-.social i:nth-child(1)  { color: #4267b2; }
-.social i:nth-child(2)  { color: #1da1f2; }
-.social i:nth-child(3)  { color: #bd081c; }
-.social i:nth-child(4)  { color: #36465d; }
+.social i:nth-child(1) {
+  color: #4267b2;
+}
+.social i:nth-child(2) {
+  color: #1da1f2;
+}
+.social i:nth-child(3) {
+  color: #bd081c;
+}
+.social i:nth-child(4) {
+  color: #36465d;
+}
 
 .right {
   padding: 0 25px 0 25px !important;
@@ -264,12 +284,13 @@ main {
   cursor: pointer;
   font-size: 13pt;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: #888;
 }
 
-.nav li:hover, .nav li:nth-child(1)  { 
+.nav li:hover,
+.nav li:nth-child(1) {
   color: #999;
   border-bottom: 2px solid #999;
 }
@@ -283,20 +304,20 @@ main {
   color: #fff;
   padding: 8px 15px;
   cursor: pointer;
-  transition: all .4s;
-  font-family: 'Montserrat', sans-serif;
+  transition: all 0.4s;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
 .follow:hover {
-  box-shadow: 0 0 15px rgba(0,0,0,0.2), 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width:990px) {
+@media (max-width: 990px) {
   .nav {
     display: none;
   }
-  
+
   .follow {
     width: 50%;
     margin-left: 25%;
@@ -305,7 +326,7 @@ main {
     text-align: center;
   }
 }
-.gallery  {
+.gallery {
   margin-top: 35px;
 }
 
@@ -314,8 +335,8 @@ main {
 }
 
 .gallery img {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
-  width: auto; 
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
   height: auto;
   cursor: pointer;
   max-width: 100%;

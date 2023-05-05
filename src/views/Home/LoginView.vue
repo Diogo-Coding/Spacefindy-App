@@ -2,7 +2,12 @@
   <div class="loginPage">
     <NavBar />
     <div class="mainPage">
-      <div class="loginForm">
+      <div
+        class="loginForm"
+        ref="loginForm"
+        :style="{ display: showLoginForm }"
+        style="margin-right: 5%"
+      >
         <div class="formTitle">Log In</div>
         <div class="form">
           <div class="formUser">
@@ -13,18 +18,56 @@
             <p class="formLabel">Contraseña:</p>
             <input
               type="password"
-              name=""
-              id=""
               ref="password"
               v-on:keyup.enter="checkLogin()"
             />
           </div>
           <div class="formSend">
-            <button
-              class="logInButton"
-              @click="($event) => checkLogin()"
-            >
+            <button class="logInButton" @click="($event) => checkLogin()">
               Login
+            </button>
+          </div>
+          <div v-if="errorLogin" class="errorLogin">
+            {{ errorMsg }}
+          </div>
+        </div>
+      </div>
+      <div class="formSend" :style="{ display: showCreateAccountButton }">
+        <button class="logInButton" @click="toggleForm()">Crear cuenta</button>
+      </div>
+      <div class="formSend" :style="{ display: showLoginFormButton }">
+        <button class="logInButton" @click="toggleLogin()">
+          Volver al Login
+        </button>
+      </div>
+      <div
+        class="loginForm"
+        ref="createAccount"
+        id="createAccountForm"
+        :style="{ display: showCreateAccountForm }"
+        style="margin-left: 5%"
+      >
+        <div class="formTitle">New Account</div>
+        <div class="form">
+          <div class="formUser">
+            <p class="formLabel">Usuario:</p>
+            <input
+              type="text"
+              ref="newUsername"
+              v-on:keyup.enter="newAccount()"
+            />
+          </div>
+          <div class="formPassword">
+            <p class="formLabel">Contraseña:</p>
+            <input
+              type="password"
+              ref="newPassword"
+              v-on:keyup.enter="newAccount()"
+            />
+          </div>
+          <div class="formSend">
+            <button class="logInButton" @click="($event) => newAccount()">
+              Comenzar
             </button>
           </div>
           <div v-if="errorLogin" class="errorLogin">
@@ -51,6 +94,11 @@ export default {
   setup() {
     const store = useStore();
 
+    const showCreateAccountButton = ref("flex");
+    const showLoginForm = ref("flex");
+    const showCreateAccountForm = ref("none");
+    const showLoginFormButton = ref("none");
+
     // let user = store.getters.getUser
     // if(user != null) {
     //   if(!store.getters.isLoggedIn) {
@@ -62,10 +110,36 @@ export default {
 
     const username = ref("");
     const password = ref("");
+
+    const newUsername = ref("");
+    const newPassword = ref("");
+
     const errorLogin = ref(false);
     const errorMsg = ref("");
 
-    function checkLogin() {
+    function toggleForm() {
+      showLoginForm.value = "none";
+      showCreateAccountButton.value = "none";
+      showLoginFormButton.value = "flex";
+      showCreateAccountForm.value = "flex";
+      errorMsg.value = "";
+      errorLogin.value = false;
+      newPassword.value.style.border = "";
+      newUsername.value.style.border = "";
+    }
+
+    function toggleLogin() {
+      showLoginFormButton.value = "none";
+      showCreateAccountForm.value = "none";
+      showLoginForm.value = "flex";
+      showCreateAccountButton.value = "flex";
+      errorMsg.value = "";
+      errorLogin.value = false;
+      password.value.style.border = "";
+      username.value.style.border = "";
+    }
+
+    const checkLogin = () => {
       if (username.value.value.length == 0) {
         username.value.style.border = "2px solid red";
         errorLogin.value = true;
@@ -105,7 +179,8 @@ export default {
                 let user = {
                   username: data[0].username,
                   password: data[0].password,
-                  role: data[0].role,
+                  profile_desc: data[0].profile_desc,
+                  followers: data[0].followers,
                 };
                 store.dispatch("login", user);
                 router.push("/");
@@ -121,18 +196,106 @@ export default {
       }
     }
 
+    const newAccount = () => {
+      if (newUsername.value.value.length == 0) {
+        newUsername.value.style.border = "2px solid red";
+        errorLogin.value = true;
+        errorMsg.value = "Campo de usuario vacio";
+      } else if (newUsername.value.value.length > 0)
+        newUsername.value.style.border = "";
+      if (newPassword.value.value.length == 0) {
+        newPassword.value.style.border = "2px solid red";
+        errorLogin.value = true;
+        errorMsg.value = "Campo de contraseña vacio";
+      } else if (newPassword.value.value.length > 0)
+        newPassword.value.style.border = "";
+      if (
+        newUsername.value.value.length == 0 &&
+        newPassword.value.value.length == 0
+      ) {
+        errorLogin.value = true;
+        errorMsg.value = "Campos de registro vacios";
+      } else if (
+        newPassword.value.value.length > 0 &&
+        newUsername.value.value.length > 0
+      ) {
+        const options = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: newUsername.value.value,
+            password: newPassword.value.value,
+          }),
+        };
+
+        fetch(CONFIG.db[0].url + "/createUser", options)
+        .then(res => {
+          if(res.ok) {
+            let user
+            const options = {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username: newUsername.value.value }),
+            };
+
+            fetch(CONFIG.db[0].url + "/checkLoginDB", options)
+            .then(res => res.json())
+            .then(data => {
+              user = {
+                username: data[0].username,
+                password: data[0].password,
+                profile_desc: data[0].profile_desc,
+                followers: data[0].followers,
+              };
+              store.dispatch("login", user);
+              router.push("/");
+            })
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          errorMsg.value = "Algo ocurrio en el proceso";
+        });
+      }
+    }
+
     return {
       username,
       password,
       checkLogin,
+      newAccount  ,
       errorLogin,
       errorMsg,
+      showCreateAccountButton,
+      showLoginForm,
+      showCreateAccountForm,
+      toggleForm,
+      toggleLogin,
+      showLoginFormButton,
+      newPassword,
+      newUsername,
     };
   },
 };
 </script>
 
 <style scoped>
+#createAccountFormButton {
+  margin-left: 10%;
+  max-width: 25%;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2% 0.5% 2% 0.5%;
+}
+
+#createAccountForm {
+  max-width: 18%;
+}
+
 .loginPage {
   position: absolute;
   width: 100%;
@@ -162,7 +325,7 @@ export default {
   border-radius: 4%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
     rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
-  max-width: 12.5%;
+  max-width: 15%;
   width: 100%;
   background-color: white;
   /* margin-right: 30%; */
@@ -197,7 +360,7 @@ export default {
 }
 .formSend {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -251,7 +414,7 @@ input[type="password"]:focus {
   display: inline-block;
   flex-direction: row;
   flex-shrink: 0;
-  font-family: Eina01,sans-serif;
+  font-family: Eina01, sans-serif;
   font-size: 16px;
   font-weight: 800;
   justify-content: center;
@@ -287,7 +450,7 @@ input[type="password"]:focus {
 }
 
 .logInButton:before {
-  background-color: rgba(249, 58, 19, .32);
+  background-color: rgba(249, 58, 19, 0.32);
   content: "";
   display: block;
   height: 100%;
@@ -327,7 +490,12 @@ input[type="password"]:focus {
 }
 
 .logInButton:active:not(:disabled):after {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
   bottom: 4px;
   left: 4px;
   right: 4px;
@@ -336,6 +504,6 @@ input[type="password"]:focus {
 
 .logInButton:disabled {
   cursor: default;
-  opacity: .24;
+  opacity: 0.24;
 }
 </style>
