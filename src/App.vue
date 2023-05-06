@@ -2,6 +2,15 @@
   <router-view/>
 </template>
 
+<script>
+import { loadScript } from "vue-plugin-load-script";
+export default {
+  setup() {
+    loadScript("https://kit.fontawesome.com/771394cdc2.js")
+  }
+}
+</script>
+
 <style>
 #app {
   -webkit-font-smoothing: antialiased;

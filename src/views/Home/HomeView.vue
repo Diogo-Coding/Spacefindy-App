@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import { loadScript } from "vue-plugin-load-script";
 import NavBar from '@/components/NavBar.vue';
 
 export default {
@@ -16,11 +14,6 @@ export default {
   components: {
     NavBar
   },
-  setup() {
-    onMounted(() => {
-      loadScript("https://kit.fontawesome.com/771394cdc2.js")
-    })
-  }
 }
 </script>
 
@@ -39,6 +32,9 @@ export default {
 .mainPage {
   height: 100%;
   background-image: url('@/assets/Blog_EOY-Market-Report_Self-Storage-scaled.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .logo {
   height: 100%;

@@ -236,7 +236,7 @@ export default {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ username: newUsername.value.value }),
-            };
+          };
 
             fetch(CONFIG.db[0].url + "/checkLoginDB", options)
             .then(res => res.json())

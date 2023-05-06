@@ -1,8 +1,11 @@
 <template>
   <div class="navBar">
-    <div class="logo">
-      <!-- <img src="@/assets/SpaceFindy.png" alt="" class="imgLogo"> -->
-    </div>
+    <router-link to="/" class="logo">
+      <div class="logo">
+        <img src="@/assets/SpaceFindy-removebg-orange.jpeg" alt="" class="imgLogo">
+        <div class="logoTitle">Spacefindy</div>
+      </div>
+    </router-link>
     <div></div>
     <div></div>
     <div
@@ -10,21 +13,36 @@
       style="display: flex; justify-content: space-between"
     >
       <div class="buttonsNav">
-        <button class="AboutNavButton navButton">Acerca de nosotros</button>
-        <button class="SearchNavButton navButton">
-          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-        </button>
+        <router-link to="/about">
+          <button class="AboutNavButton navButton">Acerca de nosotros</button>
+        </router-link>
+        <router-link to="/search">
+          <button class="SearchNavButton navButton">
+            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+          </button>
+        </router-link>
       </div>
       <div class="accountButtons">
         <router-link to="/login" v-if="!this.$store.getters.isLoggedIn"><button class="LogInNavButton navButton">Log In</button></router-link>
-        <router-link to="/account" v-if="this.$store.getters.isLoggedIn">
+        <div v-if="this.$store.getters.isLoggedIn">
           <button class="LogInNavButtonIcon">
             <i class="fa-solid fa-user fa-xl"></i>
           </button>
-        </router-link>
-        <button class="LogOutButtonIcon" v-if="this.$store.getters.isLoggedIn" @click="logOut()">
-          <i class="fa-solid fa-right-from-bracket fa-xl" style="color: red"></i>
-        </button>
+          <div class="content">
+            <div>
+              <router-link to="/account">
+                <button class="LogOutButtonIcon" v-if="this.$store.getters.isLoggedIn">
+                  <i class="fa-solid fa-user fa-lg"></i><span style="margin-left: 5px">Perfil</span>
+                </button>
+              </router-link>
+            </div> 
+            <div>
+              <button class="LogOutButtonIcon" v-if="this.$store.getters.isLoggedIn" @click="logOut()">
+                <i class="fa-solid fa-right-from-bracket fa-lg" style="color: red"></i><span style="margin-left: 5px">Salir</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -52,21 +70,53 @@ export default {
 </script>
 
 <style scoped>
+.content {
+  display: none;
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  margin: 0 60px 0 0;
+  right: -60px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  min-width: max-content;
+}
+.LogInNavButtonIcon:hover + .content {
+  display:block;
+}
+.content:hover {
+  display: block;
+}
+
 a {
   text-decoration: none;
   margin: 0;
 }
 .logo {
-  height: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgb(253,117,28);
 }
 .imgLogo{
-  height: 100%;
+  height: 70%;
+  margin-right: 5%;
+  mix-blend-mode: darken;
+}
+.logoTitle{
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .navBar {
   display: flex;
   justify-content: space-between;
   padding: 0 1%;
-  background: none;
+  background: white;
   height: min-content;
 }
 .navButton {
@@ -101,7 +151,7 @@ a {
 }
 .LogInNavButtonIcon:hover {
   transition: all .1s cubic-bezier(.4, 0, .2, 1);
-  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.01), 0 6px 6px rgba(0, 0, 0, 0.10);
   color: #ff7426;
 }
 .LogOutButtonIcon {
@@ -156,10 +206,10 @@ a {
   text-decoration: none #0d172a solid;
   text-decoration-thickness: auto;
   transition: all .1s cubic-bezier(.4, 0, .2, 1);
-  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.01), 0 6px 6px rgba(0, 0, 0, 0.10);
 }
 
 .navButton:hover {

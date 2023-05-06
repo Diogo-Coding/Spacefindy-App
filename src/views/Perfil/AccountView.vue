@@ -1,8 +1,7 @@
 <template>
-  <NavBar style="position: fixed; overflow: hidden; top: 0; width: 100%; height: min-content; background-color: white;"/>
-  <div class="container" style="padding-top: 70px;">
-    <header>
-    </header>
+  <NavBar />
+  <div class="container" style="padding-top: 70px">
+    <header></header>
     <main>
       <div class="row">
         <div class="left col-lg-4">
@@ -16,7 +15,9 @@
           <h4 class="name">{{ this.$store.getters.getUser.username }}</h4>
           <div class="stats row">
             <div class="stat col-xs-4" style="padding-right: 50px">
-              <p class="number-stat">{{ this.$store.getters.getUser.followers }}</p>
+              <p class="number-stat">
+                {{ this.$store.getters.getUser.followers }}
+              </p>
               <p class="desc-stat">Followers</p>
             </div>
             <div class="stat col-xs-4" style="padding-left: 50px">
@@ -36,42 +37,46 @@
         </div>
         <div class="right col-lg-8">
           <ul class="nav">
-            <li>Gallery</li>
-            <li>Collections</li>
-            <li>Groups</li>
-            <li>About</li>
+            <li class="selected" @click="changeSelected('Trasteros')" ref="trasterosNav">Trasteros</li>
+            <li @click="changeSelected('Suscripciones')" ref="suscripcionesNav">Suscripciones</li>
           </ul>
-          <span class="follow">Follow</span>
-          <div class="row gallery">
-            <div class="col-md-4">
-              <img
-                src="https://images.pexels.com/photos/1036371/pexels-photo-1036371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              />
-            </div>
-            <div class="col-md-4">
-              <img
-                src="https://images.pexels.com/photos/861034/pexels-photo-861034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              />
-            </div>
-            <div class="col-md-4">
-              <img
-                src="https://images.pexels.com/photos/113338/pexels-photo-113338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              />
-            </div>
-            <div class="col-md-4">
-              <img
-                src="https://images.pexels.com/photos/5049/forest-trees-fog-foggy.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              />
-            </div>
-            <div class="col-md-4">
-              <img
-                src="https://images.pexels.com/photos/428431/pexels-photo-428431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              />
-            </div>
-            <div class="col-md-4">
-              <img
-                src="https://images.pexels.com/photos/50859/pexels-photo-50859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              />
+          <div class="accountOptions">
+            <span class="follow">Editar</span>
+            <span class="follow">Publicar</span>
+            <span class="follow">Promocionar</span>
+          </div>
+          <div v-if="selected == 'Trasteros'">
+            <div class="row gallery">
+              <div class="col-md-4">
+                <img
+                  src="https://images.pexels.com/photos/1036371/pexels-photo-1036371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                />
+              </div>
+              <div class="col-md-4">
+                <img
+                  src="https://images.pexels.com/photos/861034/pexels-photo-861034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                />
+              </div>
+              <div class="col-md-4">
+                <img
+                  src="https://images.pexels.com/photos/113338/pexels-photo-113338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                />
+              </div>
+              <div class="col-md-4">
+                <img
+                  src="https://images.pexels.com/photos/5049/forest-trees-fog-foggy.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                />
+              </div>
+              <div class="col-md-4">
+                <img
+                  src="https://images.pexels.com/photos/428431/pexels-photo-428431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                />
+              </div>
+              <div class="col-md-4">
+                <img
+                  src="https://images.pexels.com/photos/50859/pexels-photo-50859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -81,7 +86,7 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { loadScript } from "vue-plugin-load-script";
 import NavBar from "@/components/NavBar.vue";
 import { useStore } from "vuex";
@@ -89,14 +94,29 @@ import { useStore } from "vuex";
 export default {
   name: "ProfileView",
   components: {
-    NavBar
+    NavBar,
   },
   setup() {
-
     const store = useStore();
-    console.log(store.getters.getUser)
-    const followers = store.getters.getUser.followers
-    const profile_desc = store.getters.getUser.profile_desc
+    console.log(store.getters.getUser);
+    const followers = store.getters.getUser.followers;
+    const profile_desc = store.getters.getUser.profile_desc;
+
+    const selected = 'Trasteros'
+
+    const trasterosNav = ref('')
+    const suscripcionesNav = ref('')
+
+    function changeSelected (selected) {
+      if(selected == 'Trasteros' && !trasterosNav.value.classList.contains('selected')) {
+        trasterosNav.value.classList.add('selected')
+        suscripcionesNav.value.classList.remove('selected')
+      }
+      if(selected == 'Suscripciones' && !suscripcionesNav.value.classList.contains('selected')) {
+        suscripcionesNav.value.classList.add('selected')
+        trasterosNav.value.classList.remove('selected')
+      }
+    }
 
     onMounted(() => {
       loadScript(
@@ -107,8 +127,12 @@ export default {
 
     return {
       followers,
-      profile_desc
-    }
+      profile_desc,
+      selected,
+      trasterosNav,
+      suscripcionesNav,
+      changeSelected
+    };
   },
 };
 </script>
@@ -126,7 +150,7 @@ body {
 .container {
   max-width: 100%;
   /* margin: 30px auto 30px; */
-  padding: 70px 0 0 0 !important;
+  padding: 0 !important;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -290,15 +314,17 @@ main {
 }
 
 .nav li:hover,
-.nav li:nth-child(1) {
+.nav li.selected {
   color: #999;
   border-bottom: 2px solid #999;
 }
 
-.follow {
+.accountOptions {
   position: absolute;
   right: 8%;
   top: 35px;
+}
+.follow {
   font-size: 11pt;
   background-color: #42b1fa;
   color: #fff;
@@ -307,6 +333,7 @@ main {
   transition: all 0.4s;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  margin: 2px;
 }
 
 .follow:hover {
@@ -318,7 +345,7 @@ main {
     display: none;
   }
 
-  .follow {
+  .accountOptions {
     width: 50%;
     margin-left: 25%;
     display: block;
