@@ -12,11 +12,11 @@
             />
             <div class="active"></div>
           </div>
-          <h4 class="name">{{ this.$store.getters.getUser.username }}</h4>
+          <h4 class="name">{{ username }}</h4>
           <div class="stats row">
             <div class="stat col-xs-4" style="padding-right: 50px">
               <p class="number-stat">
-                {{ this.$store.getters.getUser.followers }}
+                {{ followers }}
               </p>
               <p class="desc-stat">Followers</p>
             </div>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <p class="desc">
-            {{ this.$store.getters.getUser.profile_desc }}
+            {{ profile_desc }}
           </p>
           <div class="social">
             <i class="fa fa-facebook-square" aria-hidden="true"></i>
@@ -83,24 +83,50 @@
       </div>
     </main>
   </div>
+  <ModalEditAccount
+    ref="editAccountModal"
+  />
 </template>
 
 <script>
+// Main Imports
 import { onMounted, ref } from "vue";
 import { loadScript } from "vue-plugin-load-script";
-import NavBar from "@/components/NavBar.vue";
 import { useStore } from "vuex";
+import router from '@/router';
+
+// Components
+import NavBar from "@/components/NavBar.vue";
+import ModalEditAccount from "@/components/ModalEditAccount.vue";
 
 export default {
   name: "ProfileView",
   components: {
     NavBar,
+    ModalEditAccount
   },
   setup() {
     const store = useStore();
-    console.log(store.getters.getUser);
-    const followers = store.getters.getUser.followers;
-    const profile_desc = store.getters.getUser.profile_desc;
+
+    let user = store.getters.getUser
+    if(user != null) {
+      if(store.getters.isLoggedIn == false) {
+        router.replace({ path: '/' })
+      }
+    } else {
+      router.replace({path : '/'})
+    }
+    
+
+    let username = ''
+    let followers = ''
+    let profile_desc = ''
+    if(store.getters.getUser != null) {
+      username = store.getters.getUser.username
+      followers = store.getters.getUser.followers;
+      profile_desc = store.getters.getUser.profile_desc;
+    }
+
 
     const selected = 'Trasteros'
 
@@ -119,13 +145,11 @@ export default {
     }
 
     onMounted(() => {
-      loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
-      );
       loadScript("https://kit.fontawesome.com/771394cdc2.js");
     });
 
     return {
+      username,
       followers,
       profile_desc,
       selected,
@@ -139,6 +163,7 @@ export default {
 
 <style src="@/assets/bootstrap/bootstrap.min.css"></style>
 <style src="@/assets/google/font.css"></style>
+<style src="@/assets/bootstrap/twitterBootstrap.min.css"></style>
 <style scoped>
 html,
 body {

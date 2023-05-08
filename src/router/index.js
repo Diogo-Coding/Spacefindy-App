@@ -11,7 +11,7 @@ import LoginView from '../views/Home/LoginView.vue'
 // import ChatView from '../views/Main/ChatView.vue'
 // import PaymentView from '../views/Main/PaymentView.vue'
 // import RentView from '../views/Main/RentView.vue'
-// import SearchStorageView from '../views/Main/SearchStorageView.vue'
+import SearchStorageView from '../views/Main/SearchStorageView.vue'
 
 //Account Views
 import AccountView from '../views/Perfil/AccountView.vue'
@@ -43,6 +43,11 @@ const routes = [
     path: '/account',
     name: 'account',
     component: AccountView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchStorageView
   },
 ]
 
