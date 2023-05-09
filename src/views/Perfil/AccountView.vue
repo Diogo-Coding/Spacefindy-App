@@ -41,7 +41,7 @@
             <li @click="changeSelected('Suscripciones')" ref="suscripcionesNav">Suscripciones</li>
           </ul>
           <div class="accountOptions">
-            <span class="follow">Editar</span>
+            <span class="follow" @click="showEditModal()">Editar</span>
             <span class="follow">Publicar</span>
             <span class="follow">Promocionar</span>
           </div>
@@ -85,6 +85,8 @@
   </div>
   <ModalEditAccount
     ref="editAccountModal"
+    :style="{display: showEditAccount}"
+    v-on:close-modal="closeModal()"
   />
 </template>
 
@@ -121,10 +123,18 @@ export default {
     let username = ''
     let followers = ''
     let profile_desc = ''
-    if(store.getters.getUser != null) {
-      username = store.getters.getUser.username
-      followers = store.getters.getUser.followers;
-      profile_desc = store.getters.getUser.profile_desc;
+    function updateInfo () {
+      if(store.getters.getUser != null) {
+        username = store.getters.getUser.username
+        followers = store.getters.getUser.followers;
+        profile_desc = store.getters.getUser.profile_desc;
+      }
+    }
+    updateInfo()
+
+    function closeModal () {
+      updateInfo()
+      showEditAccount.value = 'none'
     }
 
 
@@ -132,6 +142,11 @@ export default {
 
     const trasterosNav = ref('')
     const suscripcionesNav = ref('')
+    const showEditAccount = ref('none')
+
+    function showEditModal () {
+      showEditAccount.value = 'flex'
+    }
 
     function changeSelected (selected) {
       if(selected == 'Trasteros' && !trasterosNav.value.classList.contains('selected')) {
@@ -155,7 +170,11 @@ export default {
       selected,
       trasterosNav,
       suscripcionesNav,
-      changeSelected
+      changeSelected,
+      showEditAccount,
+      showEditModal,
+      updateInfo,
+      closeModal
     };
   },
 };

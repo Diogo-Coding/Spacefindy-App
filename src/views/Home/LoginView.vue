@@ -12,7 +12,12 @@
         <div class="form">
           <div class="formUser">
             <p class="formLabel">Usuario:</p>
-            <input type="text" ref="username" v-on:keyup.enter="checkLogin()" />
+            <input
+              type="text"
+              ref="username"
+              v-on:keyup.enter="checkLogin()"
+              required
+            />
           </div>
           <div class="formPassword">
             <p class="formLabel">Contraseña:</p>
@@ -20,6 +25,7 @@
               type="password"
               ref="password"
               v-on:keyup.enter="checkLogin()"
+              required
             />
           </div>
           <div class="formSend">
@@ -55,6 +61,7 @@
               type="text"
               ref="newUsername"
               v-on:keyup.enter="newAccount()"
+              required
             />
           </div>
           <div class="formPassword">
@@ -63,15 +70,12 @@
               type="password"
               ref="newPassword"
               v-on:keyup.enter="newAccount()"
+              required
             />
           </div>
           <div class="formUser">
             <p class="formLabel">Nombre:</p>
-            <input
-              type="text"
-              ref="newName"
-              v-on:keyup.enter="newAccount()"
-            />
+            <input type="text" ref="newName" v-on:keyup.enter="newAccount()" />
           </div>
           <div class="formUser">
             <p class="formLabel">Apellidos:</p>
@@ -82,7 +86,9 @@
             />
           </div>
           <div>
-            <p class="aditionalInfo">Puedes completar tus datos mas tarde en tu perfil.</p>
+            <p class="aditionalInfo">
+              Puedes completar tus datos mas tarde en tu perfil.
+            </p>
           </div>
           <div class="formSend">
             <button class="logInButton" @click="($event) => newAccount()">
@@ -132,8 +138,8 @@ export default {
 
     const newUsername = ref("");
     const newPassword = ref("");
-    const newName = ref("")
-    const newSurname = ref("")
+    const newName = ref("");
+    const newSurname = ref("");
 
     const errorLogin = ref(false);
     const errorMsg = ref("");
@@ -215,7 +221,7 @@ export default {
             }
           });
       }
-    }
+    };
 
     const newAccount = () => {
       if (newUsername.value.value.length == 0) {
@@ -246,55 +252,59 @@ export default {
           body: JSON.stringify({
             username: newUsername.value.value,
             password: newPassword.value.value,
-            name: (!newName.value.value) ? newUsername.value.value : newName.value.value,
-            surname: (!newSurname.value.value) ? newUsername.value.value : newSurname.value.value
+            name: !newName.value.value
+              ? newUsername.value.value
+              : newName.value.value,
+            surname: !newSurname.value.value
+              ? newUsername.value.value
+              : newSurname.value.value,
           }),
         };
 
         fetch(CONFIG.db[0].url + "/createUser", options)
-        .then(res => {
-          if(res.status != 409) {
-            console.log('a')
-            let user
-            const options = {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ username: newUsername.value.value }),
-            }
-
-            fetch(CONFIG.db[0].url + "/checkLoginDB", options)
-            .then(res => res.json())
-            .then(data => {
-              user = {
-                username: data[0].username,
-                password: data[0].password,
-                name: data[0].name,
-                email: data[0].email,
-                membership: data[0].membership,
-                profile_desc: data[0].profile_desc,
-                followers: data[0].followers,
-                created_at: data[0].created_at,
+          .then((res) => {
+            if (res.status != 409) {
+              console.log("a");
+              let user;
+              const options = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: newUsername.value.value }),
               };
-              store.dispatch("login", user);
-              router.push("/");
-            })
-          } else {
-            errorLogin.value = true;
-            errorMsg.value = 'Ya existe un usuario con ese nombre de usuario'
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          errorMsg.value = "Algo ocurrio en el proceso";
-        });
+
+              fetch(CONFIG.db[0].url + "/checkLoginDB", options)
+                .then((res) => res.json())
+                .then((data) => {
+                  user = {
+                    username: data[0].username,
+                    password: data[0].password,
+                    name: data[0].name,
+                    email: data[0].email,
+                    membership: data[0].membership,
+                    profile_desc: data[0].profile_desc,
+                    followers: data[0].followers,
+                    created_at: data[0].created_at,
+                  };
+                  store.dispatch("login", user);
+                  router.push("/");
+                });
+            } else {
+              errorLogin.value = true;
+              errorMsg.value = "Ya existe un usuario con ese nombre de usuario";
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            errorMsg.value = "Algo ocurrio en el proceso";
+          });
       }
-    }
+    };
 
     return {
       username,
       password,
       checkLogin,
-      newAccount  ,
+      newAccount,
       errorLogin,
       errorMsg,
       showCreateAccountButton,
@@ -306,14 +316,14 @@ export default {
       newPassword,
       newUsername,
       newName,
-      newSurname
+      newSurname,
     };
   },
 };
 </script>
 
 <style scoped>
-.aditionalInfo{
+.aditionalInfo {
   font-size: 12px;
   margin-top: 20px;
   text-align: center;

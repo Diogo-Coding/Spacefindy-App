@@ -22,6 +22,9 @@ export default createStore({
     login(context, user) {
       context.commit('SET_USER',user)
     },
+    update(context, user) {
+      context.commit('SET_USER',user)
+    },
     logout(context) {
       context.commit('SET_USER', null)
     }

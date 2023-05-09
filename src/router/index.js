@@ -15,7 +15,6 @@ import SearchStorageView from '../views/Main/SearchStorageView.vue'
 
 //Account Views
 import AccountView from '../views/Perfil/AccountView.vue'
-// import EditAccountView from '../views/Perfil/EditAccountView.vue'
 // import EditStorageView from '../views/Perfil/EditStorageView.vue'
 // import MyStoragesView from '../views/Perfil/MyStoragesView.vue'
 // import PromoteView from '../views/Perfil/PromoteView.vue'
