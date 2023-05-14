@@ -1,6 +1,6 @@
 <template>
   <div class="loginPage">
-    <NavBar />
+    <NavBar class="nav"/>
     <div class="mainPage">
       <div
         class="loginForm"
@@ -204,18 +204,23 @@ export default {
               console.log(data);
               if (password.value.value === originalPassword) {
                 let user = {
+                  id: data[0].id,
                   username: data[0].username,
                   password: data[0].password,
+                  name: data[0].name,
+                  email: data[0].email,
+                  membership: data[0].membership,
                   profile_desc: data[0].profile_desc,
                   followers: data[0].followers,
+                  created_at: data[0].created_at,
                 };
                 store.dispatch("login", user);
                 router.push("/");
+              } else {
+                errorLogin.value = true;
+                errorMsg.value = "Usuario o contraseña incorrectos";
               }
-            } else if (
-              data.length == 0 ||
-              password.value.value !== originalPassword
-            ) {
+            } else if ( data.length == 0 || password.value.value !== originalPassword ) {
               errorLogin.value = true;
               errorMsg.value = "Usuario o contraseña incorrectos";
             }
@@ -276,6 +281,7 @@ export default {
                 .then((res) => res.json())
                 .then((data) => {
                   user = {
+                    id: data[0].id,
                     username: data[0].username,
                     password: data[0].password,
                     name: data[0].name,
@@ -556,5 +562,10 @@ input[type="password"]:focus {
 .logInButton:disabled {
   cursor: default;
   opacity: 0.24;
+}
+.nav {
+  position: absolute;
+  width: 100%;
+  z-index: 999;
 }
 </style>

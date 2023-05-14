@@ -118,6 +118,9 @@ a {
   padding: 0 1%;
   background: white;
   height: min-content;
+  position: absolute;
+  width: 100%;
+  z-index: 999999999999999999;
 }
 .navButton {
   margin: 10px;

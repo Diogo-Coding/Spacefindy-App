@@ -18,7 +18,7 @@ import AccountView from '../views/Perfil/AccountView.vue'
 // import EditStorageView from '../views/Perfil/EditStorageView.vue'
 // import MyStoragesView from '../views/Perfil/MyStoragesView.vue'
 // import PromoteView from '../views/Perfil/PromoteView.vue'
-// import PublishStorageView from '../views/Perfil/PublishStorageView.vue'
+import PublishStorageView from '../views/Perfil/PublishStorageView.vue'
 // import SuscriptionsView from '../views/Perfil/SuscriptionsView.vue'
 
 
@@ -47,6 +47,11 @@ const routes = [
     path: '/search',
     name: 'search',
     component: SearchStorageView
+  },
+  {
+    path: '/account/storage/publish',
+    name: 'publishStorage',
+    component: PublishStorageView
   },
 ]
 

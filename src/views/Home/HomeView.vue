@@ -46,7 +46,6 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 0 1%;
-  background: none;
   height: min-content;
 }
 .navButton {

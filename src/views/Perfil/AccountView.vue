@@ -10,7 +10,6 @@
               class="photo"
               src="https://images.pexels.com/photos/1804796/pexels-photo-1804796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             />
-            <div class="active"></div>
           </div>
           <h4 class="name">{{ username }}</h4>
           <div class="stats row">
@@ -41,41 +40,22 @@
             <li @click="changeSelected('Suscripciones')" ref="suscripcionesNav">Suscripciones</li>
           </ul>
           <div class="accountOptions">
-            <span class="follow" @click="showEditModal()">Editar</span>
-            <span class="follow">Publicar</span>
+            <span class="follow" @click="showEditModal()">Editar perfil</span>
+            <span class="follow" @click="this.$router.replace('/account/storage/publish')">Publicar trastero</span>
             <span class="follow">Promocionar</span>
           </div>
           <div v-if="selected == 'Trasteros'">
-            <div class="row gallery">
-              <div class="col-md-4">
+            <div class="row gallery" v-if="storages.length > 0">
+              <div class="col-md-4" v-for="storage, index in storages" :key="index">
                 <img
-                  src="https://images.pexels.com/photos/1036371/pexels-photo-1036371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  src="@/assets/basicImageStorage.jpg"
                 />
               </div>
-              <div class="col-md-4">
-                <img
-                  src="https://images.pexels.com/photos/861034/pexels-photo-861034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                />
-              </div>
-              <div class="col-md-4">
-                <img
-                  src="https://images.pexels.com/photos/113338/pexels-photo-113338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                />
-              </div>
-              <div class="col-md-4">
-                <img
-                  src="https://images.pexels.com/photos/5049/forest-trees-fog-foggy.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                />
-              </div>
-              <div class="col-md-4">
-                <img
-                  src="https://images.pexels.com/photos/428431/pexels-photo-428431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                />
-              </div>
-              <div class="col-md-4">
-                <img
-                  src="https://images.pexels.com/photos/50859/pexels-photo-50859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                />
+            </div>
+            <div class="nothingPublished" v-else>
+              <div class="nothingPublishedText">Parace que no tienes ningun almacen publicado, publica uno ahora</div>
+              <div style="margin-top: 20px;">
+                <span class="follow" @click="this.$router.push('/account/storage/publish')" style="font-size: 30px;padding: 8px 20px;">Publicar</span>
               </div>
             </div>
           </div>
@@ -96,6 +76,7 @@ import { onMounted, ref } from "vue";
 import { loadScript } from "vue-plugin-load-script";
 import { useStore } from "vuex";
 import router from '@/router';
+import CONFIG from '@/config/db'
 
 // Components
 import NavBar from "@/components/NavBar.vue";
@@ -119,10 +100,12 @@ export default {
       router.replace({path : '/'})
     }
     
+    let storages = ref('')
 
     let username = ''
     let followers = ''
     let profile_desc = ''
+
     function updateInfo () {
       if(store.getters.getUser != null) {
         username = store.getters.getUser.username
@@ -130,7 +113,6 @@ export default {
         profile_desc = store.getters.getUser.profile_desc;
       }
     }
-    updateInfo()
 
     function closeModal () {
       updateInfo()
@@ -138,7 +120,7 @@ export default {
     }
 
 
-    const selected = 'Trasteros'
+    const selected = ref('Trasteros')
 
     const trasterosNav = ref('')
     const suscripcionesNav = ref('')
@@ -148,16 +130,35 @@ export default {
       showEditAccount.value = 'flex'
     }
 
-    function changeSelected (selected) {
-      if(selected == 'Trasteros' && !trasterosNav.value.classList.contains('selected')) {
+    function changeSelected (chossed) {
+      if(chossed == 'Trasteros' && !trasterosNav.value.classList.contains('selected')) {
         trasterosNav.value.classList.add('selected')
         suscripcionesNav.value.classList.remove('selected')
+        selected.value = chossed
       }
-      if(selected == 'Suscripciones' && !suscripcionesNav.value.classList.contains('selected')) {
+      else if(chossed == 'Suscripciones' && !suscripcionesNav.value.classList.contains('selected')) {
         suscripcionesNav.value.classList.add('selected')
         trasterosNav.value.classList.remove('selected')
+        selected.value = chossed
       }
     }
+
+    function getAllStorages () {
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id_username: store.getters.getUser.id })
+      };
+
+      fetch(CONFIG.db[0].url + "/getStoragesFromUser", options)
+      .then(res => res.json())
+      .then(data => {
+        storages.value = data
+      })
+    }
+
+    getAllStorages()
+    updateInfo()
 
     onMounted(() => {
       loadScript("https://kit.fontawesome.com/771394cdc2.js");
@@ -170,11 +171,13 @@ export default {
       selected,
       trasterosNav,
       suscripcionesNav,
-      changeSelected,
       showEditAccount,
       showEditModal,
       updateInfo,
-      closeModal
+      closeModal,
+      storages,
+      getAllStorages,
+      changeSelected
     };
   },
 };
@@ -197,7 +200,6 @@ body {
   padding: 0 !important;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -219,10 +221,6 @@ header i {
 }
 
 @media (max-width: 800px) {
-  header {
-    height: 150px;
-  }
-
   header i {
     right: -90%;
   }
@@ -411,5 +409,19 @@ main {
   height: auto;
   cursor: pointer;
   max-width: 100%;
+}
+.nothingPublished {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  text-align: center;
+}
+.nothingPublishedText {
+  font-size: 13pt;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #888;
 }
 </style>

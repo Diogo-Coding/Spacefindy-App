@@ -47,7 +47,7 @@
       </div>
       <div class="formSend">
         <button class="cancelButton" @click="$emit('closeModal'); getUserInfo()">Cancelar</button>
-        <button class="confirmButton" @click="updateInfo()">Confirmar</button>
+        <button class="confirmButton" @click="updateInfo(); $emit('closeModal');">Confirmar</button>
       </div>
     </div>
   </div>
@@ -79,15 +79,17 @@ export default {
       fetch(CONFIG.db[0].url + "/getUser", options)
         .then((res) => res.json())
         .then((data) => {
-          name.value = data[0].name;
-          surname.value = data[0].surname;
-          email.value = data[0].email;
-          profile_desc.value = data[0].profile_desc;
+          if(data) {
+            name.value = data[0].name;
+            surname.value = data[0].surname;
+            email.value = data[0].email;
+            profile_desc.value = data[0].profile_desc;
+          }
         });
     }
 
     function updateInfo () {
-      let user = { username: store.getters.getUser.username, name: name.value, surname: surname.value, email: email.value, profile_desc: profile_desc.value }
+      let user = { username: store.getters.getUser.username, name: name.value, surname: surname.value, email: email.value, profile_desc: profile_desc.value, followers: store.getters.getUser.followers }
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -350,7 +352,7 @@ textarea {
 .cancelButton {
   background-color: #fff;
   border: 0 solid #e2e8f0;
-  border-radius: 1.5rem;
+  border-radius: 80px;
   box-sizing: border-box;
   color: #0d172a;
   cursor: pointer;
