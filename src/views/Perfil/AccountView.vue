@@ -46,7 +46,7 @@
           </div>
           <div v-if="selected == 'Trasteros'">
             <div class="row gallery" v-if="storages.length > 0">
-              <div class="col-md-4" v-for="storage, index in storages" :key="index">
+              <div class="col-md-4" v-for="storage, index in storages" :key="index" @click="showEditStorageModal(storage)">
                 <img
                   src="@/assets/basicImageStorage.jpg"
                 />
@@ -68,6 +68,12 @@
     :style="{display: showEditAccount}"
     v-on:close-modal="closeModal()"
   />
+  <ModalEditStorage
+    v-if="showEditStorage"
+    :storage="storage"
+    ref="editStorageModal"
+    v-on:close-modal="closeModal()"
+  />
 </template>
 
 <script>
@@ -81,12 +87,14 @@ import CONFIG from '@/config/db'
 // Components
 import NavBar from "@/components/NavBar.vue";
 import ModalEditAccount from "@/components/ModalEditAccount.vue";
+import ModalEditStorage from '@/components/ModalEditStorage.vue';
 
 export default {
   name: "ProfileView",
   components: {
     NavBar,
-    ModalEditAccount
+    ModalEditAccount,
+    ModalEditStorage
   },
   setup() {
     const store = useStore();
@@ -126,8 +134,16 @@ export default {
     const suscripcionesNav = ref('')
     const showEditAccount = ref('none')
 
+    const showEditStorage = ref(false)
+    const storage = ref()
+
     function showEditModal () {
       showEditAccount.value = 'flex'
+    }
+
+    function showEditStorageModal (info) {
+      storage.value = info
+      showEditStorage.value = true
     }
 
     function changeSelected (chossed) {
@@ -177,7 +193,10 @@ export default {
       closeModal,
       storages,
       getAllStorages,
-      changeSelected
+      changeSelected,
+      showEditStorage,
+      showEditStorageModal,
+      storage
     };
   },
 };

@@ -63,16 +63,22 @@
             </div>
           </div>
           <div class="right-container">
-            <div class="formUser">
-              <p class="formLabel">Descripcion del almacen</p>
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-                v-model="description"
-                placeholder="Una breve descripcion de las caracteristicas de su trastero :)"
-              ></textarea>
+            <div style="display: flex">
+              <!-- <div class="formUser" style="height: 100%; width: 100%; margin-right: 1%;">
+                <p class="formLabel">Imagen principal</p>
+                <input type="file" name="" id="" ref="inputImageToUpload">
+              </div> -->
+              <div class="formUser" style="width: 100%; height: 100%; margin-left: 1%;">
+                <p class="formLabel">Descripcion del almacen</p>
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  v-model="description"
+                  placeholder="Una breve descripcion de las caracteristicas de su trastero :)"
+                ></textarea>
+              </div>
             </div>
           </div>
         </div>
@@ -128,6 +134,7 @@ import router from "@/router";
 import COMUNIDADES from "@/config/ccaa";
 import PROVINCIAS from "@/config/provincias";
 import CONFIG from '@/config/db'
+import defaultImage from '@/assets/default-placeholder.png';
 
 // Components
 import NavBar from "@/components/NavBar.vue";
@@ -150,6 +157,10 @@ export default {
     const comunidadSelected = ref("0");
     const provinciaSelected = ref("0");
 
+    const mainImage = ref(defaultImage)
+
+    const inputImageToUpload = ref()
+
     const fullLocation = ref('')
 
     const showModalConfirmation = ref(false);
@@ -170,7 +181,6 @@ export default {
       );
       showOtherSelect.value = false;
     });
-
 
     function showConfirmation () {
       showModalConfirmation.value = true
@@ -201,6 +211,25 @@ export default {
           router.replace('/account')
         }
       })
+
+      // const formData = new FormData();
+      // formData.append('imagen', inputImageToUpload.value.files[0])
+      // const options2 = {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: formData
+      // };
+
+      // fetch(CONFIG.db[0].url + "/upload", options2)
+      // .then(response => response.json())
+      // .then(data => {
+      //   // Manejar la respuesta del backend
+      //   console.log(data);
+      // })
+      // .catch(error => {
+      //   // Manejar errores
+      //   console.error(error);
+      // });
     }
 
     onMounted(() => {
@@ -220,7 +249,9 @@ export default {
       description,
       fullLocation,
       showConfirmation,
-      publishStorage
+      publishStorage,
+      mainImage,
+      inputImageToUpload,
     };
   },
 };
@@ -270,11 +301,11 @@ export default {
   width: 100%;
 }
 .left-container {
-  width: 50%;
+  width: 40%;
   padding: 2%;
 }
 .right-container {
-  width: 50%;
+  width: 60%;
   padding: 2%;
 }
 .formLabel {
