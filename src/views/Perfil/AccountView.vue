@@ -124,7 +124,9 @@ export default {
 
     function closeModal () {
       updateInfo()
+      getAllStorages()
       showEditAccount.value = 'none'
+      showEditStorage.value = false
     }
 
 

@@ -197,6 +197,8 @@ export default {
         surface: surfaceX.value + 'x' + surfaceZ.value,
         description: description.value,
         location: fullLocation.value,
+        ccaa: COMUNIDADES.ccaa.filter(com => com.code == comunidadSelected.value)[0].label,
+        prov: PROVINCIAS.provincias.filter(prov => prov.parent_code == provinciaSelected.value)[0].label,
         status: 'Disponible'
       }
       const options = {
