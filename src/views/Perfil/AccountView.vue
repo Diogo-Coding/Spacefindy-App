@@ -53,10 +53,7 @@
               </div>
             </div>
             <div class="nothingPublished" v-else>
-              <div class="nothingPublishedText">Parace que no tienes ningun almacen publicado, publica uno ahora</div>
-              <div style="margin-top: 20px;">
-                <span class="follow" @click="this.$router.push('/account/storage/publish')" style="font-size: 30px;padding: 8px 20px;">Publicar</span>
-              </div>
+              <div class="nothingPublishedText">Parace que no hemos podido encontrar resultados para esa busqueda, vuelve a intentarlo</div>
             </div>
           </div>
         </div>
