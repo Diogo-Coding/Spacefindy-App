@@ -1,6 +1,6 @@
-<template>
+<template style="overflow: hidden">
   <NavBar />
-  <div class="container" style="padding-top: 70px">
+  <div class="container" style="padding-top: 70px; max-width: 100%; width: 100%;">
     <header></header>
     <main>
       <div class="row">
@@ -214,9 +214,9 @@ body {
 
 .container {
   max-width: 100%;
+  width: 100%;
   /* margin: 30px auto 30px; */
   padding: 0 !important;
-  width: 100%;
   background-color: #fff;
 }
 

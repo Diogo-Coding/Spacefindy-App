@@ -2,6 +2,7 @@
   <div class="home">
     <NavBar />
     <div class="mainPage">
+
     </div>
   </div>
 </template>
@@ -35,6 +36,8 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  margin-top: 70px;
+  overflow: overlay;
 }
 .logo {
   height: 100%;
