@@ -40,8 +40,9 @@
         <label for="" class="label">RESULTADOS DE BUSQUEDA</label>
         <div>
           <div class="row gallery" v-if="storages.length > 0">
-            <div class="col-md-4" v-for="storage, index in storages" :key="index" style="padding: 1% 2%; flex: 0 0 25%; position:relative" @click="showCategorie(storage)">
-              <img
+            <div class="col-md-4" v-for="storage, index in storages" :key="index" style="padding: 1% 2%; flex: 0 0 25%; position:relative">
+              <img 
+                @click="showCategorie(storage)"
                 src="@/assets/basicImageStorage.jpg"
               />
               <label class="label overImage">{{ storage.title }}</label>
@@ -54,15 +55,7 @@
       </div>
     </div>
   </div>
-  <o-modal v-model:active="toggleCategorie" :width="960" scroll="clip">
-    <div style="padding: 10px; width: 960px;">
-      <section>
-        <o-field>
-          {{ selectedStorage }}
-        </o-field>
-      </section>
-    </div>
-  </o-modal>
+  <div class="backImage"></div>
 </template>
 
 <script>
@@ -78,8 +71,8 @@ export default {
     NavBar,
   },
   setup() {
-    const comunidadSelected = ref("06")
-    const provinciaSelected = ref("06")
+    const comunidadSelected = ref("0")
+    const provinciaSelected = ref("0")
     const showOtherSelect = ref(true)
 
     const comunidades = ref(COMUNIDADES.ccaa)
@@ -127,8 +120,8 @@ export default {
     }
 
     function showCategorie(storage) {
-      toggleCategorie.value = true
-      selectedStorage.value = storage
+      let url = 'https://' + window.location.host + '/storage/' + storage.id
+      window.open(url).focus()
     }
 
     return {
@@ -152,6 +145,7 @@ export default {
 <style src="@/assets/google/font.css"></style>
 <style src="@/assets/bootstrap/twitterBootstrap.min.css"></style>
 <style scoped>
+
 .searchView {
   position: absolute;
   left: 0;
@@ -160,11 +154,29 @@ export default {
   /* margin: 30px auto 30px; */
   padding: 0 !important;
   width: 100%;
-  background-color: #fff;
+  height: 100%;
+  z-index: 2;
+}
+.backImage {
+  position: fixed;
+  background-image: url('@/assets/Blog_EOY-Market-Report_Self-Storage-scaled.jpg');
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+
+  /* Full height */
+  height: 100%;
+  width: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  z-index: 1;
+  transform: scale(1.05);
 }
 .searchBody {
   width: 100%;
-  height: 100%;
   margin-top: 70px;
   padding: 2%;
 }
@@ -177,13 +189,14 @@ export default {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-bottom: 2%;
+  background-color: rgba(255, 255, 255, 1);
 }
 .searchResults {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 100%;
   padding: 1%;
   border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .navBar {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);

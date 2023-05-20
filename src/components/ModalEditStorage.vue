@@ -60,7 +60,7 @@
             <div class="formUser" style="margin-top: 5%">
               <p class="formLabel">Estado</p>
               <div>
-                <label for="visibility">Visible / No Visible</label><input type="checkbox" name="" id="visibility" v-model="status">
+                <label for="visibility">Visible / No Visible</label><input type="checkbox" name="" id="visibility" v-model="status" style="margin-left: 2%"> 
               </div>
             </div>
           </div>

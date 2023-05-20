@@ -199,7 +199,7 @@ export default {
         location: fullLocation.value,
         ccaa: COMUNIDADES.ccaa.filter(com => com.code == comunidadSelected.value)[0].label,
         prov: PROVINCIAS.provincias.filter(prov => prov.parent_code == provinciaSelected.value)[0].label,
-        status: 'Disponible'
+        status: true
       }
       const options = {
         method: "POST",
