@@ -12,6 +12,9 @@ export default {
 </script>
 
 <style>
+/* html {
+  overflow: hidden !important;
+} */
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

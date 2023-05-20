@@ -12,6 +12,7 @@ import LoginView from '../views/Home/LoginView.vue'
 // import PaymentView from '../views/Main/PaymentView.vue'
 // import RentView from '../views/Main/RentView.vue'
 import SearchStorageView from '../views/Main/SearchStorageView.vue'
+import SeeStorageView from '../views/Main/SeeStorageView.vue'
 
 //Account Views
 import AccountView from '../views/Perfil/AccountView.vue'
@@ -52,6 +53,11 @@ const routes = [
     path: '/account/storage/publish',
     name: 'publishStorage',
     component: PublishStorageView
+  },
+  {
+    path: '/storage/:id',
+    name: 'seeStorage',
+    component: SeeStorageView
   },
 ]
 

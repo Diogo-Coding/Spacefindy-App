@@ -60,7 +60,7 @@
             <div class="formUser" style="margin-top: 5%">
               <p class="formLabel">Estado</p>
               <div>
-                <label for="visibility">Visible / No Visible</label> <input type="checkbox" name="" id="visibility" v-model="status">
+                <label for="visibility">Visible / No Visible</label><input type="checkbox" name="" id="visibility" v-model="status" style="margin-left: 2%"> 
               </div>
             </div>
           </div>
@@ -178,8 +178,7 @@ export default {
     const surfaceX = ref(infoStorage.surface.split("x")[0]);
     const surfaceZ = ref(infoStorage.surface.split("x")[1]);
     const description = ref(infoStorage.description);
-    let state = (infoStorage.status == 'Disponible') ? state = true : state = false;
-    const status = ref(state)
+    const status = ref(infoStorage.status)
     let visualState = (status.value == true) ? visualState = 'Disponible': visualState = 'Oculto'
     const visualStatus = ref(visualState)
 
@@ -264,7 +263,7 @@ export default {
       infoStorage,
       status,
       visualStatus,
-      updateStorage
+      updateStorage,
     };
   },
   emits : ['closeModal']
