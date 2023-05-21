@@ -50,6 +50,16 @@ const routes = [
     component: SearchStorageView
   },
   {
+    path: '/search/:ccaa/:prov',
+    name: 'search',
+    component: SearchStorageView
+  },
+  {
+    path: '/search/:ccaa',
+    name: 'search',
+    component: SearchStorageView
+  },
+  {
     path: '/account/storage/publish',
     name: 'publishStorage',
     component: PublishStorageView

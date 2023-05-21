@@ -64,6 +64,7 @@ import COMUNIDADES from "@/config/ccaa";
 import PROVINCIAS from "@/config/provincias";
 import CONFIG from '@/config/db'
 import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 
 export default {
@@ -71,8 +72,20 @@ export default {
     NavBar,
   },
   setup() {
+    const route = useRoute();
+
     const comunidadSelected = ref("0")
     const provinciaSelected = ref("0")
+
+    if(route.params.ccaa) {
+      console.log(route.params.ccaa)
+      comunidadSelected.value = route.params.ccaa
+      if(route.params.prov) {
+        console.log(route.params.prov)
+        provinciaSelected.value = route.params.prov
+      }
+    }
+    
     const showOtherSelect = ref(true)
 
     const comunidades = ref(COMUNIDADES.ccaa)

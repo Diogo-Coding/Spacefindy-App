@@ -1,49 +1,30 @@
-# spacefindy-app
+# Spacefindy Front
 
-1. Para instalar el node_modules
-```
-npm i
-```
+## Instalation of project
 
-2. Para encenderlo
-```
-npm run serve
-```
+1. For run this project you will need the backend project, visit `https://github.com/Diogo-Coding/spacefindy-backend`.
 
 
-# descarga y puesta del proyecto
+2. Clone the repo
+  ```
+  git clone https://github.com/Diogo-Coding/spacefindy-app.git
+  ```
 
-1. Necesitas de una clave ssh (preguntame)
-```
-git clone git@github.com:Diogo-Coding/spacefindy-app.git
-```
+3. Modify the `db.js` file in `src/config` with the `url` from your database.
 
-# para subir archivos
+4. Install node modules
+  ```
+  npm install
+  ```
 
-1. Para añadir cambios
-```
-git add .
-```
+5. Start the project
+  ```
+  npm run serve
+  ```
 
+## Info
 
-2. Para ver los cambios
-```
-git status
-```
-
-3. Para hacer un commit
-```
-git commit -m 'mensaje del commit'
-```
-
-4. Para subir finalmente
-```
-git push -u origin main
-```
-
-
-//====================//
-
+This project is done with https protocol, you can change the digital certificate importing it to the project on main folder and change the `vue.config.js` file to import the certificate. Take note that this only will work for dev server, once you do the build, certificate should be on your server configuration.
 
 
 ## Project setup
