@@ -26,6 +26,11 @@
 
 This project is done with https protocol, you can change the digital certificate importing it to the project on main folder and change the `vue.config.js` file to import the certificate. Take note that this only will work for dev server, once you do the build, certificate should be on your server configuration.
 
+If you want run this project on a nginx, apache or another server, just run the build in your server page folder. To create de `/dist` folder, run:
+
+```
+npm run build
+```
 
 ## Project setup
 ```
