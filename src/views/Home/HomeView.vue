@@ -218,7 +218,7 @@
             <div  class="row buttonSearchRow">
               <div  class="col-md-12 col">
                 <button
-                  
+                  @click="search('0')"
                   type="button"
                   class="mt-4 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--x-large secondary buttonSearch"
                 >
