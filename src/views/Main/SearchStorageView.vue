@@ -26,7 +26,7 @@
             <option
               v-for="(provincia, index) in provincias"
               :key="index"
-              :value="provincia.parent_code"
+              :value="provincia.code"
             >
               {{ provincia.label }}
             </option>
@@ -77,15 +77,6 @@ export default {
     const comunidadSelected = ref("0")
     const provinciaSelected = ref("0")
 
-    if(route.params.ccaa) {
-      console.log(route.params.ccaa)
-      comunidadSelected.value = route.params.ccaa
-      if(route.params.prov) {
-        console.log(route.params.prov)
-        provinciaSelected.value = route.params.prov
-      }
-    }
-    
     const showOtherSelect = ref(true)
 
     const comunidades = ref(COMUNIDADES.ccaa)
@@ -97,6 +88,22 @@ export default {
 
     const toggleCategorie = ref(false)
 
+    if(route.params.ccaa) {
+      console.log(route.params.ccaa)
+      comunidadSelected.value = route.params.ccaa
+      showOtherSelect.value = false;
+      if(route.params.prov) {
+        console.log(route.params.prov)
+        provincias.value = PROVINCIAS.provincias.filter(
+          (prov) => prov.parent_code == route.params.ccaa
+        );
+        provinciaSelected.value = route.params.prov
+        getStorages()
+      } else {
+        getStorages()
+      }
+    }
+
     watch(comunidadSelected, (newSelected) => {
       provinciaSelected.value = "0";
       provincias.value = PROVINCIAS.provincias.filter(
@@ -105,6 +112,7 @@ export default {
       showOtherSelect.value = false;
     });
 
+
     function getStorages () {
       if (comunidadSelected.value != 0) {
         showResults.value = false
@@ -112,7 +120,7 @@ export default {
         if (comunidadSelected.value) {
           com = COMUNIDADES.ccaa.filter(com => com.code == comunidadSelected.value)[0].label
           if (provinciaSelected.value != 0) {
-            prov = PROVINCIAS.provincias.filter(prov => prov.parent_code == provinciaSelected.value)[0].label
+            prov = PROVINCIAS.provincias.filter(prov => prov.code == provinciaSelected.value)[0].label
           }
         } 
 

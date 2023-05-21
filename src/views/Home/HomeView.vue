@@ -54,7 +54,7 @@
                   <div class="row">
                     <div class="text-body-2 font-weight-light">
                       Gracias a nuestro proceso de verificación, los trasteros
-                      de la comunidad Speizy son tan seguros como las soluciones
+                      de la comunidad SpaceFindy son tan seguros como las soluciones
                       de self-storage.
                     </div>
                   </div>
@@ -105,7 +105,8 @@
                     aria-hidden="true"
                     class="v-icon notranslate v-icon--left theme--light secondary--text"
                     style="font-size: 40px; height: 40px; width: 40px"
-                    ><svg
+                    >
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       role="img"
@@ -115,7 +116,10 @@
                     >
                       <path
                         d="M14,10H19.5L14,4.5V10M5,3H15L21,9V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3M5,12V14H19V12H5M5,16V18H14V16H5Z"
-                      ></path></svg></span>
+                      >
+                      </path>
+                    </svg>
+                  </span>
                 </div>
               </div>
               <div class="row">
@@ -163,7 +167,7 @@
                   </div>
                   <div class="row">
                     <div class="text-body-2 font-weight-light">
-                      Con Speizy, se aprovecha espacio ya construido al que no
+                      Con SpaceFindy, se aprovecha espacio ya construido al que no
                       se le está dando uso, y además en la proximidad. ¡Olvídate
                       de tener que ir a las afueras!
                     </div>
@@ -174,53 +178,36 @@
           </div>
         </div>
 
-        <div data-v-8a38172e="" class="row d-flex justify-space-between">
-          <div data-v-8a38172e="" class="col-md-3 col">
-            <div data-v-8a38172e="" class="container container--fluid">
-              <div
-                data-v-8a38172e=""
-                class="v-image v-responsive rounded-xl theme--light"
-              >
-                <div
-                  class="v-responsive__sizer"
-                  style="padding-bottom: 150%"
-                ></div>
-                <!-- <div class="v-image__image v-image__image--contain">
-                  <img src="@/assets/basicImageStorage.jpg" alt="lateral-img" />
-                </div> -->
-                <div class="v-responsive__content" style="width: 500px"></div>
-              </div>
-            </div>
-          </div>
-          <div data-v-8a38172e="" class="col-md-8 col">
-            <div data-v-8a38172e="" class="row">
-              <div data-v-8a38172e="" class="col-md-12 col">
-                <h2 data-v-8a38172e="" class="font-weight-black text-h5">
+        <div  class="row d-flex justify-space-between infoTextContainer">
+          <div  class="col-md-8 col">
+            <div  class="row textMain">
+              <div  class="col-md-12 col">
+                <h2  class="font-weight-black text-h5">
                   ¡Encontrar un trastero de alquiler con SpaceFindy es muy sencillo!
                 </h2>
               </div>
             </div>
-            <div data-v-8a38172e="" class="row">
-              <div data-v-8a38172e="" class="col-md-12 col">
-                <div data-v-8a38172e="" class="font-weight-medium text-body-2">
+            <div  class="row">
+              <div  class="col-md-12 col">
+                <div  class="font-weight-medium text-body-2">
                   Guardar cosas es necesario. Aunque la solución muchas veces
                   puede ser vender o reciclar lo que no necesites, a veces
                   simplemente necesitamos algo más de espacio por un tiempo.
-                  <br data-v-8a38172e="" /><br data-v-8a38172e="" />
-                  ¡No te preocupes! Con Speizy podrás alquilar un trastero de
+                  <br  /><br  />
+                  ¡No te preocupes! Con SpaceFindy podrás alquilar un trastero de
                   forma sencilla. Simplemente introduce tu dirección en el
                   buscador y filtra entre un rango amplio de espacios cerca de
                   ti, bien sean trasteros, guardamuebles, desvanes, almacenes,
                   oficinas, habitaciones libres, etc.
-                  <br data-v-8a38172e="" /><br data-v-8a38172e="" />
-                  Con Speizy, podrás encontrar espacios cerca de tu casa o de tu
+                  <br  /><br  />
+                  Con SpaceFindy, podrás encontrar espacios cerca de tu casa o de tu
                   oficina, ¡y será mucho más barato que guardar tus cosas en una
                   compañía de self-storage!
-                  <br data-v-8a38172e="" /><br data-v-8a38172e="" />
+                  <br  /><br  />
                   Además, puedes estar tranquilo porque podrás ver si cada
                   anfitrión ha pasado el proceso de verificación. Al alquilar un
-                  trastero con Speizy, tus pertenencias permanecerán seguras.
-                  <br data-v-8a38172e="" /><br data-v-8a38172e="" />
+                  trastero con SpaceFindy, tus pertenencias permanecerán seguras.
+                  <br  /><br  />
                   Explicamos claramente todas las comisiones: el anfitrión sabrá
                   exactamente cuánto va a cobrar, y el inquilino cuánto va a
                   recibir. Sin ningún coste oculto. Los pagos se gestionan
@@ -228,53 +215,37 @@
                 </div>
               </div>
             </div>
-            <div data-v-8a38172e="" class="row">
-              <div data-v-8a38172e="" class="col-md-12 col">
+            <div  class="row buttonSearchRow">
+              <div  class="col-md-12 col">
                 <button
-                  data-v-8a38172e=""
+                  
                   type="button"
-                  class="mt-4 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--x-large secondary"
+                  class="mt-4 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--x-large secondary buttonSearch"
                 >
-                  <span class="v-btn__content">
-                    Busca un trastero cerca
-                    <span
-                      data-v-8a38172e=""
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--right theme--light"
-                      ><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        role="img"
-                        aria-hidden="true"
-                        class="v-icon__svg"
-                      >
-                        <path
-                          d="M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.21 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14M14,6.11L8,4V15.89L9,16.24V16.5C9,17.14 9.09,17.76 9.26,18.34L8,17.9L2.66,19.97L2.5,20A0.5,0.5 0 0,1 2,19.5V4.38C2,4.15 2.15,3.97 2.36,3.9L8,2L14,4.1L19.34,2H19.5A0.5,0.5 0 0,1 20,2.5V11.81C18.83,10.69 17.25,10 15.5,10C15,10 14.5,10.06 14,10.17V6.11Z"
-                        ></path></svg></span>
-                      </span>
+                <span><i class="fa-solid fa-magnifying-glass-location fa-xl"></i></span> Buscar un trastero
                 </button>
               </div>
-              <div>
+              <div style="margin-top: 7.5%">
                 <table>
                   <thead>
                   <tr>
-                    <th colspan="4">UBICACIÓN</th>
+                    <th colspan="4"><label for="" class="label" style="color: rgb(34,40,49);">ALGUNAS DE NUESTRAS UBICACIONES</label></th>
                   </tr>
                   </thead>
                   <tbody class="white_text">
                     <tr>
-                    <td class="capital-image madrid">Santa Cruz de Tenerife</td>
-                    <td class="capital-image madrid">Las Palmas de Gran Canaria</td>
-                    <td class="capital-image madrid">Santa Cruz de La Palma</td>
-                    <td class="capital-image madrid">San Sebastián de La Gomera</td>
+                      <td class="capital-image tenerife" @click="search('05', '38')"><label for="" class="noBrightness">Santa Cruz de Tenerife</label></td>
+                      <td class="capital-image grancanaria" @click="search('05', '35')"><label for="" class="noBrightness">Las Palmas de Gran Canaria</label></td>
+                      <td class="capital-image madrid" @click="search('13', '28')"><label for="" class="noBrightness">Madrid</label></td>
+                      <td class="capital-image barcelona" @click="search('09', '08')"><label for="" class="noBrightness">Barcelona</label></td>
                     </tr>
-                  
-                  <tr>
-                    <td class="capital-image madrid">Madrid</td>
-                    <td class="capital-image barcelona">Barcelona</td>
-                    <td class="capital-image sevilla">Sevilla</td>
-                    <td class="capital-image bilbao">Bilbao</td>
-                  </tr>
+                    
+                    <tr>
+                      <td class="capital-image sevilla" @click="search('01', '41')"><label for="" class="noBrightness">Sevilla</label></td>
+                      <td class="capital-image galicia" @click="search('12')"><label for="" class="noBrightness">Galicia</label></td>
+                      <td class="capital-image cantabria" @click="search('06', '39')"><label for="" class="noBrightness">Cantabria</label></td>
+                      <td class="capital-image bilbao" @click="search('09')"><label for="" class="noBrightness">Bilbao</label></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -284,45 +255,45 @@
 
       </div>
       <div class="contain">
-            <div class="col">
-              <h3>SpaceFindy</h3>
-              <ul>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/about">Sobre Nosotros</a></li>
-              </ul>
-            </div>
-            <div class="col">
-              <h3>Tipos de espacios</h3>
-              <ul>
-                <li>
-                  <a
-                    href="/espacios/tipos-de-almacenamiento/trasteros-particulares"
-                    >Alquilar trasteros particulares</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="col">
-              <h3>Alquilar trasteros</h3>
-              <ul>
-                <li><a href="/trasteros">Trasteros</a></li>
-                <li><a href="/trasteros/madrid">Trasteros en Madrid</a></li>
-                <li>
-                  <a href="/trasteros/barcelona">Trasteros en Barcelona</a>
-                </li>
-                <li><a href="/trasteros/bilbao">Trasteros en Santa Cruz de Tenerife</a></li>
-                <li><a href="/trasteros/sevilla">Trasteros en Las Palmas de Gran Canaria</a></li>
-              </ul>
-            </div>
-            <br>
-            <div data-v-2a72d595 class="v-card__text">
-              <div data-v-2a72d595 style="color: white">
-                2023 —
-                <strong data-v-2a72d595="">SpaceFindy S.A.</strong> Todos
-                los derechos reservados
-              </div>
-            </div>
+        <div class="col">
+          <h3>SpaceFindy</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/about">Sobre Nosotros</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Tipos de espacios</h3>
+          <ul>
+            <li>
+              <a
+                href="/search"
+                >Alquilar trasteros particulares</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Alquilar trasteros</h3>
+          <ul>
+            <li><a href="/search">Trasteros</a></li>
+            <li><a href="/search/13">Trasteros en Madrid</a></li>
+            <li>
+              <a href="/search/09/08">Trasteros en Barcelona</a>
+            </li>
+            <li><a href="/search/09">Trasteros en Santa Cruz de Tenerife</a></li>
+            <li><a href="/search/01/41">Trasteros en Las Palmas de Gran Canaria</a></li>
+          </ul>
+        </div>
+        <br>
+        <div data-v-2a72d595 class="v-card__text">
+          <div data-v-2a72d595 style="color: white">
+            2023 —
+            <strong data-v-2a72d595="">SpaceFindy S.A.</strong> Todos
+            los derechos reservados
           </div>
+        </div>
+      </div>
     </div>
     
   </div>
@@ -330,17 +301,46 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import router from '@/router';
 
 export default {
   name: "HomeView",
   components: {
     NavBar,
   },
+  setup() {
+
+    function search (ccaa, prov) {
+      if(ccaa && prov) {
+        router.push({ name: 'searchFull', params: { ccaa, prov } })
+      } else {
+        router.push({ name: 'searchCCAA', params: { ccaa } })
+      }
+    }
+
+    return {
+      search
+    }
+  }
 };
 </script>
 <style src="@/assets/bootstrap/bootstrap.min.css"></style>
 <style src="@/assets/google/font.css"></style>
 <style scoped>
+.noBrightness {
+  filter: brightness(100%);
+}
+.textMain {
+  text-align: center;
+  margin-bottom: 5%;
+  background-image: linear-gradient(92.83deg, #ff7426 0, #ff5d3b 100%);
+  padding: 3%;
+  border-radius: 20px;
+  color: white;
+}
+.label {
+  color: #33383a;
+}
 .home {
   position: absolute;
   width: 100%;
@@ -369,13 +369,14 @@ table {
 }
 
 td {
-  padding-top: 5%;
+  padding-top: 10%;
   padding-left: 2%;
-  padding-right: 5%;
-  padding-bottom: 2%;
+ 
   text-align: left;
-  color: #f2f2f2;
+  color: white;
   font-weight: bold;
+  height: 150px;
+  width: 400px;
 }
 
 th {
@@ -387,31 +388,153 @@ th {
 }
 
 .capital-image {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      height: 20%;
-      border-radius: 5%;
-      filter: brightness(80%);
-    /* left: 0;
-    top: 0; */
-   /* position: absolute; */
-    
-    width: 20%;
-    /* z-index: -1; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.infoTextContainer {
+  justify-content: center;
+  margin-top: 7.5%;
+}
+.buttonSearchRow {
+  text-align: center;
+}
+
+
+/* BUTTON CSS */
+.buttonSearch {
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.125rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0 10px;
+  min-height: 48px;
+  outline: none;
+  overflow: visible;
+  padding: 19px 26px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: auto;
+  word-break: keep-all;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .buttonSearch {
+    padding: 19px 32px;
+  }
+}
+
+.buttonSearch:before,
+.buttonSearch:after {
+  border-radius: 80px;
+}
+
+.buttonSearch:before {
+  background-color: rgba(249, 58, 19, 0.32);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.buttonSearch:after {
+  background-color: initial;
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+
+.buttonSearch:hover:not(:disabled):after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition-timing-function: ease-in;
+}
+
+.buttonSearch:active:not(:disabled) {
+  color: #ccc;
+}
+
+.buttonSearch:active:not(:disabled):after {
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+}
+
+.buttonSearch:disabled {
+  cursor: default;
+  opacity: 0.24;
 }
 
 .madrid {
-  background-image: url("@/assets/plaza-castilla-madrid-min.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('@/assets/plaza-castilla-madrid-min.jpg');
 }
 .barcelona {
-  background-image: url("@/assets/park-guell-barcelona-min.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url("@/assets/park-guell-barcelona-min.jpg");
 }
 .bilbao {
-  background-image: url("@/assets/guggenheim-bilbao-min.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url("@/assets/guggenheim-bilbao-min.jpg");
 }
 .sevilla {
-  background-image: url("@/assets/plaza-espana-de-sevilla-min.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),url("@/assets/plaza-espana-de-sevilla-min.jpg");
+}
+.grancanaria {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),url("@/assets/las-palmas-de-gran-canaria.jpg");
+}
+.tenerife {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),url("@/assets/santa-cruz-de-tenerife.jpg");
+}
+.cantabria {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),url("@/assets/cantabria.jpg");
+}
+.galicia {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url("@/assets/galicia.jpg");
 }
 
 a {
@@ -444,6 +567,7 @@ ul, ol {
 .h1-header {
   font-size: 50px;
   font-weight: bold;
+  margin-bottom: 5%;
 }
 
 .h2-header {
@@ -470,6 +594,8 @@ ul, ol {
   background-color: #33383a;
   color: white;
   display: flex;
+  height: 300px;
+  padding: 2%;
 }
 
 .v-card__text {
@@ -482,8 +608,8 @@ ul, ol {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  margin-top: 70px;
   overflow-y: overlay;
+  overflow-x: hidden;
 }
 
 .lateral-img {

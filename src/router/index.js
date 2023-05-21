@@ -51,12 +51,12 @@ const routes = [
   },
   {
     path: '/search/:ccaa/:prov',
-    name: 'search',
+    name: 'searchFull',
     component: SearchStorageView
   },
   {
     path: '/search/:ccaa',
-    name: 'search',
+    name: 'searchCCAA',
     component: SearchStorageView
   },
   {
